@@ -200,7 +200,7 @@ const Hero = () => {
               style={{
                 zIndex: 105,
                 width: isMobile ? "90%" : "35rem",
-                bottom: "1.25rem",
+                bottom: isMobile ? "5rem" : "2.25rem",
                 left: isMobile ? "5%" : "auto",
                 right: isMobile ? "auto" : "16rem",
                 transform: isMobile ? "translateX(-50%)" : "none",
