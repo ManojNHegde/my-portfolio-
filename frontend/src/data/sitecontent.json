@@ -1,0 +1,295 @@
+{
+  "hero": {
+    "image": {
+      "src": "/manoj.jpg",
+      "alt": "Manoj",
+      "className": "w-40 h-40 rounded-full border-4 border-white shadow-lg"
+    },
+    "heading": "Hi, I'm Manoj 👋",
+    "subheading": "A Passionate Developer | Engineer | Tech Enthusiast",
+    "buttons": [
+      {
+        "text": "View My Work",
+        "href": "#projects",
+        "className": "px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-200 transition"
+      },
+      {
+        "text": "Hire Me",
+        "href": "#contact",
+        "className": "px-6 py-3 bg-transparent border border-white rounded-lg hover:bg-white hover:text-blue-600 transition"
+      }
+    ]
+  },
+  "about": {
+    "heading": "About Me",
+    "paragraphs": [
+      "I'm <span class='font-semibold'>Manoj</span>, a passionate developer with a love for building innovative tech solutions.",
+      "My expertise includes <span class='font-semibold'>React, Express, Django, and Machine Learning</span>.",
+      "I enjoy solving complex problems, exploring AI, and staying updated with the latest tech trends. When I'm not coding, you can find me reading books or playing cricket! 🏏📚"
+    ],
+    "image": {
+      "src": "/manoj.jpg",
+      "alt": "Manoj",
+      "className": "w-60 h-60 rounded-xl shadow-lg border-4 border-blue-500"
+    }
+  },
+  "contact": {
+    "heading": "Contact Me",
+    "fields": [
+      {
+        "type": "text",
+        "name": "name",
+        "placeholder": "Your Name",
+        "required": true
+      },
+      {
+        "type": "email",
+        "name": "email",
+        "placeholder": "Your Email",
+        "required": true
+      },
+      {
+        "type": "textarea",
+        "name": "message",
+        "placeholder": "Your Message",
+        "rows": 4,
+        "required": true
+      }
+    ],
+    "button": {
+      "text": "Send Message",
+      "className": "w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+    },
+    "messages": {
+      "success": "✅ Message sent successfully!",
+      "error": "❌ Something went wrong. Try again later."
+    }
+  },
+  "navbar": {
+    "logo": "Manoj | Portfolio",
+    "menuItems": [
+      "Home",
+      "About",
+      "Projects",
+      "Skills",
+      "Education",
+      "Certifications",
+      "Contact"
+    ]
+  },
+  "projects": {
+    "sectionTitle": "My Projects",
+    "items": [
+      {
+        "title": "Food Order System",
+        "description": "A full-stack food ordering system where users can browse food items, add them to the cart, and place orders.",
+        "techStack": "React, Node.js, Express.js, MongoDB",
+        "demoLink": "",
+        "githubLink": ""
+      },
+      {
+        "title": "FindMyNest",
+        "description": "A rental room listing website where homeowners can list properties and users can book accommodations.",
+        "techStack": "Django, MySQL, Google Maps API, TensorFlow",
+        "demoLink": "",
+        "githubLink": ""
+      },
+      {
+        "title": "YelpCamp",
+        "description": "A campground review platform where users can explore, add, and review campgrounds.",
+        "techStack": "Node.js, Express, MongoDB, Cloudinary",
+        "demoLink": "",
+        "githubLink": "https://github.com/ManojNHegde/YelpCamp"
+      },
+      {
+        "title": "Face Emotion Recognition",
+        "description": "A real-time AI system to detect facial emotions using OpenCV and TensorFlow.",
+        "techStack": "Python, OpenCV, TensorFlow, FER 2013 Dataset",
+        "demoLink": "",
+        "githubLink": ""
+      },
+      {
+        "title": "Crime Detection Using Video Surveillance",
+        "description": "AI system for identifying crimes using CCTV footage with YOLO object detection.",
+        "techStack": "Python, OpenCV, Deep Learning, YOLOv5",
+        "demoLink": "",
+        "githubLink": ""
+      },
+      {
+        "title": "Sales Analysis and Visualization",
+        "description": "Interactive sales data dashboard built with Python libraries for visual storytelling.",
+        "techStack": "Python, Pandas, Matplotlib, Plotly",
+        "demoLink": "",
+        "githubLink": "https://github.com/ManojNHegde/Sales-analysis-project"
+      },
+      {
+        "title": "FindMyMentor",
+        "description": "Platform that connects mentors and students based on subject expertise and interests.",
+        "techStack": "React, Firebase, Firestore, TailwindCSS",
+        "demoLink": "",
+        "githubLink": "https://github.com/ManojNHegde/findmymentor"
+      },
+      {
+        "title": "AI-Powered Chatbot for Conversational PDF Interaction",
+        "description": "Streamlit web app enabling users to chat with PDF documents using natural language queries. Implemented a RAG pipeline with LangChain, FAISS, and LLMs for PDF parsing, chunking, vector storage, and context-aware QA with source referencing. Deployed on Streamlit Community Cloud and optimized for real-time performance.",
+        "techStack": "Streamlit, LangChain, FAISS, LLMs, Python",
+        "demoLink": "https://document-chat-app-00.streamlit.app/",
+        "githubLink": "https://github.com/ManojNHegde/document-chat"
+      }
+    ]
+  },
+  "skills": {
+    "sectionTitle": "My Skills",
+    "items": [
+      {
+        "name": "React",
+        "icon": "FaReact",
+        "color": "text-blue-500",
+        "level": "50%"
+      },
+      {
+        "name": "Node.js",
+        "icon": "FaNodeJs",
+        "color": "text-green-600",
+        "level": "75%"
+      },
+      {
+        "name": "Django",
+        "icon": "SiDjango",
+        "color": "text-green-500",
+        "level": "70%"
+      },
+      {
+        "name": "Python",
+        "icon": "FaPython",
+        "color": "text-yellow-500",
+        "level": "85%"
+      },
+      {
+        "name": "TensorFlow",
+        "icon": "SiTensorflow",
+        "color": "text-orange-500",
+        "level": "65%"
+      },
+      {
+        "name": "MySQL",
+        "icon": "SiMysql",
+        "color": "text-blue-700",
+        "level": "75%"
+      },
+      {
+        "name": "HTML",
+        "icon": "FaHtml5",
+        "color": "text-red-500",
+        "level": "100%"
+      },
+      {
+        "name": "CSS",
+        "icon": "FaCss3Alt",
+        "color": "text-blue-500",
+        "level": "85%"
+      },
+      {
+        "name": "JavaScript",
+        "icon": "FaJs",
+        "color": "text-yellow-400",
+        "level": "80%"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "SiTailwindcss",
+        "color": "text-blue-400",
+        "level": "85%"
+      },
+      {
+        "name": "Git",
+        "icon": "FaGitAlt",
+        "color": "text-orange-600",
+        "level": "80%"
+      }
+    ]
+  },
+  "certifications": {
+    "sectionTitle": "Certifications",
+    "items": [
+      {
+        "title": "React - The Complete Guide",
+        "platform": "Udemy",
+        "date": "May 2025",
+        "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-ec3ac4d6-f0f1-4823-b7f3-8d30792673ae.pdf"
+      },
+      {
+        "title": "The Web Developer Bootcamp",
+        "platform": "Udemy",
+        "date": "July 2024",
+        "link": "https://www.udemy.com/certificate/UC-c63bbe80-cd51-486c-b0a9-0e587d068681"
+      },
+      {
+        "title": "Programming Using C++ ",
+        "platform": "Infosys Springboard",
+        "date": "(March  2023)",
+        "link": "https://infyspringboard.onwingspan.com/public-assets/infosysheadstart/cert/lex_auth_01297200240671948837_shared/1-906f4926-6388-46bf-9e23-08c6cd9a423e.pdf"
+      },
+      {
+        "title": "Programming for Everybody (Getting Started with Python)",
+        "platform": "Coursera",
+        "date": "Nov 2022",
+        "link": "https://www.coursera.org/account/accomplishments/verify/YQ6JHVRE53AG"
+      }
+    ]
+  },
+ 
+  "internship": {
+    "company": "Varcons Technologies Pvt Ltd",
+    "role": "AI Product Development and Data Analytics Intern",
+    "duration": "March 2025 – May 2025",
+    "highlights": [
+      "Built Smart Attrition Prediction and Employee Wellness Engine.",
+      "Created predictive ML models (Logistic Regression, Random Forest, XGBoost).",
+      "Integrated performance dashboards using Power BI & Streamlit."
+    ]
+  },
+  "interests": {
+    "sectionTitle": "What I Love",
+    "items": [
+      "Reading finance & self-help books",
+      "Playing cricket",
+      "Building side projects"
+    ]
+  },
+  "softSkills": {
+    "sectionTitle": "Soft Skills",
+    "items": [
+      "Problem Solving",
+      "Teamwork",
+      "Communication",
+      "Adaptability",
+      "Time Management"
+    ]
+  },
+
+  "education": {
+  "sectionTitle": "Education",
+  "items": [
+    {
+      "degree": "B.E. in Computer Science and Engineering",
+      "institution": "Sai Vidya Institute of Technology",
+      "duration": "2021 – 2025",
+      "details": "CGPA: 9.0"
+    },
+    {
+      "degree": "PUC",
+      "institution": "Govt H Benne PU College, Kumta",
+      "duration": "2019 – 2021",
+      "details": "Percentage: 95%"
+    },
+    {
+      "degree": "SSLC",
+      "institution": "Pragathi Vidyalaya Muroor, Kumta, Uttara Kannada",
+      "duration": "2018 – 2019",
+      "details": "Percentage: 92%"
+    }
+  ]
+}
+
+}
