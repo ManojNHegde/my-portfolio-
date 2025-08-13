@@ -21,7 +21,7 @@ app = FastAPI(title="RAG Chat API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://my-portfolio-fhyq.onrender.com","http://localhost:5173"],
+    allow_origins=["http://localhost:5173","https://my-portfolio-xi-one-25.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
