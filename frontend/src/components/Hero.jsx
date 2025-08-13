@@ -1,28 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
 import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaComments, FaTimes } from "react-icons/fa"; // <-- Added FaTimes here
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaComments, FaTimes } from "react-icons/fa";
 import Chat from "./Chat";
-import Navbar from "./Navbar"; // import your navbar
+import Navbar from "./Navbar";
 
 const Hero = () => {
   const data = content.hero;
   const [showResumeCard, setShowResumeCard] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  const [navOpen, setNavOpen] = useState(false); // navbar state
+  const [navOpen, setNavOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // track mobile
 
-  // Ref for chat container
   const chatRef = useRef(null);
 
-  // When chat toggled open, close navbar
   const toggleChat = () => {
     setShowChat((prev) => {
-      if (!prev) setNavOpen(false); // close navbar if chat is opening
+      if (!prev) setNavOpen(false);
       return !prev;
     });
   };
 
-  // Close chat if clicked outside chat box
+  // Update isMobile on resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (chatRef.current && !chatRef.current.contains(event.target)) {
@@ -48,7 +53,7 @@ const Hero = () => {
       <motion.section
         id="home"
         className={`h-screen flex flex-col items-center justify-center text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 relative
-          ${showChat ? "filter blur-sm pointer-events-none" : ""}`} // blur background when chat open
+          ${showChat ? "filter blur-sm pointer-events-none" : ""}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -59,14 +64,8 @@ const Hero = () => {
           alt={data.image.alt}
           className={data.image.className}
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{
-            opacity: 1,
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 2,
-            delay: 0.5,
-          }}
+          animate={{ opacity: 1, scale: [1, 1.05, 1] }}
+          transition={{ duration: 2, delay: 0.5 }}
         />
 
         {/* Heading */}
@@ -122,7 +121,6 @@ const Hero = () => {
               📄 Resume
             </motion.button>
 
-            {/* Resume Preview */}
             <AnimatePresence>
               {showResumeCard && (
                 <motion.div
@@ -193,13 +191,20 @@ const Hero = () => {
         <AnimatePresence>
           {showChat && (
             <motion.div
-              ref={chatRef} // <--- Added ref here
+              ref={chatRef}
               initial={{ opacity: 0, scale: 0.8, x: 50 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.8, x: 50 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="bg-white text-black w-[35rem] max-h-[95vh] rounded-lg shadow-lg mb-0 flex flex-col overflow-hidden fixed bottom-5 right-[16rem]"
-              style={{ zIndex: 105 }}
+              className={`bg-white text-black max-h-[95vh] rounded-lg shadow-lg mb-0 flex flex-col overflow-hidden fixed`}
+              style={{
+                zIndex: 105,
+                width: isMobile ? "90%" : "35rem",
+                bottom: "1.25rem",
+                left: isMobile ? "5%" : "auto",
+                right: isMobile ? "auto" : "16rem",
+                transform: isMobile ? "translateX(-50%)" : "none",
+              }}
             >
               <div className="flex-1 overflow-y-auto p-4">
                 <Chat />
