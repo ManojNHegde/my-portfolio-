@@ -1,18 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
-import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaComments, FaTimes } from "react-icons/fa"; // <-- Added FaTimes here
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaComments, FaTimes } from "react-icons/fa";
 import Chat from "./Chat";
 import Navbar from "./Navbar"; // import your navbar
 
 const Hero = () => {
-  const data = content.hero;
+  const [data, setData] = useState(null); // fetch data instead of importing
   const [showResumeCard, setShowResumeCard] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [navOpen, setNavOpen] = useState(false); // navbar state
 
   // Ref for chat container
   const chatRef = useRef(null);
+
+  // Fetch site content JSON from GitHub
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json") // GitHub URL
+      .then((res) => res.json())
+      .then((json) => setData(json.hero))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
 
   // When chat toggled open, close navbar
   const toggleChat = () => {
@@ -40,6 +47,8 @@ const Hero = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showChat]);
+
+  if (!data) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <>

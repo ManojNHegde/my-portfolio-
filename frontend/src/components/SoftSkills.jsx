@@ -1,17 +1,23 @@
-import React from "react";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const SoftSkills = () => {
-  const { sectionTitle, items } = content.softSkills;
+  const [softSkillsData, setSoftSkillsData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((json) => setSoftSkillsData(json.softSkills))
+      .catch((err) => console.error("Failed to fetch soft skills JSON:", err));
+  }, []);
+
+  if (!softSkillsData) return null; // Or a loader/spinner
+
+  const { sectionTitle, items } = softSkillsData;
 
   const containerVariants = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
@@ -19,11 +25,7 @@ const SoftSkills = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
+      transition: { type: "spring", stiffness: 300, damping: 20 },
     },
   };
 
@@ -39,8 +41,9 @@ const SoftSkills = () => {
         <motion.h2
           className="text-3xl font-bold text-center text-blue-600 mb-10"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           {sectionTitle}
         </motion.h2>

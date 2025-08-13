@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import axios from "axios";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const contactData = content.contact;
-
+  const [contactData, setContactData] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
+  // Fetch content JSON from GitHub Pages
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((data) => setContactData(data.contact))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
+
+  if (!contactData) return <p className="text-center mt-10">Loading...</p>;
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // clear messages when typing
     if (success || error) {
       setSuccess(false);
       setError(false);
@@ -21,15 +28,25 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Replace these with your EmailJS credentials
+const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+
+
+
     try {
-      const response = await axios.post("http://localhost:5000/contact", formData);
-      if (response.data.success) {
+      const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY);
+      if (response.status === 200) {
         setSuccess(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
         setError(true);
       }
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       setError(true);
     }
   };
@@ -39,7 +56,7 @@ const Contact = () => {
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.2, duration: 0.5 }
+      transition: { delay: i * 0.2, duration: 0.5 },
     }),
   };
 

@@ -1,9 +1,15 @@
-import React from "react";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Interests = () => {
-  const { sectionTitle, items } = content.interests;
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((json) => setData(json.interests))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -24,6 +30,8 @@ const Interests = () => {
     },
   };
 
+  if (!data) return <p className="text-center mt-10 text-gray-900">Loading...</p>;
+
   return (
     <motion.section
       id="interests"
@@ -43,11 +51,11 @@ const Interests = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          {sectionTitle}
+          {data.sectionTitle}
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6 text-lg text-gray-800">
-          {items.map((interest, idx) => (
+          {data.items.map((interest, idx) => (
             <motion.div
               key={idx}
               className="bg-white p-4 rounded-md shadow-sm hover:shadow-md transition"

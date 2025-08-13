@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import content from "../data/sitecontent.json";
 import { motion } from "framer-motion";
 
 const PrevArrow = ({ onClick }) => (
@@ -26,12 +24,21 @@ const NextArrow = ({ onClick }) => (
 );
 
 const Projects = () => {
-  const projectData = content.projects;
+  const [projectData, setProjectData] = useState(null);
   const [sliderRef, setSliderRef] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((json) => setProjectData(json.projects))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
+
+  if (!projectData) return null; // or a loader
 
   const settings = {
     dots: true,
-    infinite: projectData?.items?.length > 3,
+    infinite: projectData.items.length > 3,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,

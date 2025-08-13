@@ -1,9 +1,15 @@
-import React from "react";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Internship = () => {
-  const data = content.internship;
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((json) => setData(json.internship))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
 
   const listVariant = {
     hidden: { opacity: 0, x: -20 },
@@ -17,6 +23,8 @@ const Internship = () => {
       }
     }),
   };
+
+  if (!data) return <p className="text-center mt-10 text-gray-900">Loading...</p>;
 
   return (
     <motion.section

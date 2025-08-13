@@ -1,10 +1,17 @@
 import { Link } from "react-scroll";
 import { Menu, X } from "lucide-react";
-import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const Navbar = ({ isOpen, setIsOpen }) => {
-  const navbarData = content.navbar;
+  const [navbarData, setNavbarData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((json) => setNavbarData(json.navbar))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
 
   const mobileMenuVariants = {
     hidden: { opacity: 0, y: -10, scale: 0.95 },
@@ -26,6 +33,8 @@ const Navbar = ({ isOpen, setIsOpen }) => {
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
+
+  if (!navbarData) return null; // or a loader
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md dark:bg-gray-900 z-50">
@@ -87,7 +96,7 @@ const Navbar = ({ isOpen, setIsOpen }) => {
                   smooth={true}
                   duration={500}
                   className="text-gray-800 dark:text-white hover:text-blue-500 transition"
-                  onClick={() => setIsOpen(false)} // close menu on link click
+                  onClick={() => setIsOpen(false)}
                 >
                   {item}
                 </Link>

@@ -1,5 +1,4 @@
-import React from "react";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Import icons
@@ -29,24 +28,25 @@ const iconMap = {
 // Card animation
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 const cardVariant = {
   hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
-  },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const Skills = () => {
-  const skillsData = content.skills;
+  const [skillsData, setSkillsData] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then(res => res.json())
+      .then(json => setSkillsData(json.skills))
+      .catch(err => console.error("Failed to fetch skills JSON:", err));
+  }, []);
+
+  if (!skillsData) return null; // Or a loader
 
   return (
     <motion.section
@@ -56,10 +56,7 @@ const Skills = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <motion.div
-        className="container mx-auto px-6 md:px-12"
-        variants={containerVariants}
-      >
+      <motion.div className="container mx-auto px-6 md:px-12" variants={containerVariants}>
         <motion.h2
           className="text-3xl font-bold text-center text-blue-600 mb-10"
           initial={{ opacity: 0, y: 30 }}
@@ -90,7 +87,7 @@ const Skills = () => {
                       initial={{ width: 0 }}
                       animate={{ width: skill.level }}
                       transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-                    ></motion.div>
+                    />
                   </div>
                 </div>
               </motion.div>

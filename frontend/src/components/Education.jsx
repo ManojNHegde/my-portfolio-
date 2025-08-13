@@ -1,9 +1,20 @@
-import React from "react";
-import content from "../data/sitecontent.json";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Education = () => {
-  const { sectionTitle, items } = content.education;
+  const [educationData, setEducationData] = useState(null);
+
+  // Fetch JSON from GitHub Pages
+  useEffect(() => {
+    fetch("https://manojnhegde.github.io/data/site-content.json")
+      .then((res) => res.json())
+      .then((data) => setEducationData(data.education))
+      .catch((err) => console.error("Failed to load JSON:", err));
+  }, []);
+
+  if (!educationData) return <p className="text-center mt-10">Loading...</p>;
+
+  const { sectionTitle, items } = educationData;
 
   const containerVariants = {
     hidden: {},
@@ -55,9 +66,7 @@ const Education = () => {
               <h3 className="text-xl font-semibold mb-1">{edu.degree}</h3>
               <p className="text-gray-700 mb-1">{edu.institution}</p>
               <p className="text-gray-600 italic text-sm mb-2">{edu.duration}</p>
-              {edu.details && (
-                <p className="text-gray-700">{edu.details}</p>
-              )}
+              {edu.details && <p className="text-gray-700">{edu.details}</p>}
             </motion.li>
           ))}
         </ul>
