@@ -21,7 +21,7 @@ app = FastAPI(title="RAG Chat API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173","https://my-portfolio-ti2t.vercel.app/"],
+    allow_origins=["http://localhost:5173","https://my-portfolio-ti2t.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
