@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import content from "../data/siteContent.json";
+import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaComments, FaTimes } from "react-icons/fa"; // <-- Added FaTimes here
 import Chat from "./Chat";

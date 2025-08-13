@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 import { Menu, X } from "lucide-react";
-import content from "../data/siteContent.json";
+import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = ({ isOpen, setIsOpen }) => {

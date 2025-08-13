@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import content from "../data/siteContent.json";
+import content from "../data/sitecontent.json";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Contact = () => {

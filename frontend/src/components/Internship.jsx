@@ -1,5 +1,5 @@
 import React from "react";
-import content from "../data/siteContent.json";
+import content from "../data/sitecontent.json";
 import { motion } from "framer-motion";
 
 const Internship = () => {
