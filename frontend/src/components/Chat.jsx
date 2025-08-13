@@ -19,7 +19,7 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const res = await fetch(" http://127.0.0.1:8000/ask", {
+      const res = await fetch("https://my-portfolio-fhyq.onrender.com/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: input }),
