@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import content from "../data/sitecontent.json";
 import { motion } from "framer-motion";
 
 const About = () => {
-  const [aboutData, setAboutData] = useState(null);
-  const [imageData, setImageData] = useState(null);
-
-  useEffect(() => {
-    fetch("https://manojnhegde.github.io/data/site-content.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setAboutData(data.about);
-        setImageData(data.about.image);
-      })
-      .catch((err) => console.error("Failed to load JSON:", err));
-  }, []);
-
-  if (!aboutData || !imageData) return <p>Loading...</p>;
+  const aboutData = content.about;
+  const imageData = content.about.image;
 
   const containerVariants = {
     hidden: {},

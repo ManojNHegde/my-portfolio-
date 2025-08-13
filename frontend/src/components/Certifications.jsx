@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import content from "../data/sitecontent.json";
 import { motion } from "framer-motion";
 
 const Certifications = () => {
-  const [certData, setCertData] = useState(null);
-
-  useEffect(() => {
-    fetch("https://manojnhegde.github.io/data/site-content.json")
-      .then((res) => res.json())
-      .then((data) => setCertData(data.certifications))
-      .catch((err) => console.error("Failed to load JSON:", err));
-  }, []);
-
-  if (!certData) return <p>Loading...</p>;
-
-  const { sectionTitle, items } = certData;
+  const { sectionTitle, items } = content.certifications;
 
   const containerVariants = {
     hidden: {},
